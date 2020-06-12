@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage x:Class="Marabaka.UI.Pages.Profile.CustomizeProfilePage"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:customLayout="clr-namespace:Marabaka.UI.CustomLayouts"
+                xmlns:pages="clr-namespace:Marabaka.UI.Pages">
+    <RelativeLayout BackgroundColor="{StaticResource defaultBackgroundColor}">
+        <customLayout:NavigationBarGrid BackgroundColor="Transparent"
+                                        DegreeOfView="2.2"
+                                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                              Property=Width,
+                                                                                              Factor=1,
+                                                                                              Constant=0}">
+            <Frame>
+                <Image HeightRequest="25"
+                       HorizontalOptions="StartAndExpand"
+                       Source="arrow_white"
+                       VerticalOptions="CenterAndExpand"
+                       WidthRequest="25" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PopModalCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Label Grid.Column="1"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource NavigationTitle}"
+                   Text="Кастомизация профиля"
+                   TextColor="White"
+                   VerticalTextAlignment="Center" />
+
+            <Frame Grid.Column="2">
+                <Image HeightRequest="25"
+                       HorizontalOptions="EndAndExpand"
+                       Source="help"
+                       VerticalOptions="CenterAndExpand"
+                       WidthRequest="25" />
+            </Frame>
+        </customLayout:NavigationBarGrid>
+
+
+        <customLayout:BottomDrawer Padding="0"
+                                   BackgroundColor="White"
+                                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                         Property=Width,
+                                                                                         Factor=1,
+                                                                                         Constant=0}"
+                                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                                     ElementName=saveButton,
+                                                                                     Property=Y,
+                                                                                     Factor=1,
+                                                                                     Constant=-180}">
+            <StackLayout Spacing="0">
+                <BoxView Margin="20,8,20,18"
+                         BackgroundColor="#C6C8CB"
+                         CornerRadius="2"
+                         HeightRequest="4"
+                         HorizontalOptions="Center"
+                         WidthRequest="36" />
+                <Label FontSize="12"
+                       HorizontalTextAlignment="Center"
+                       Style="{StaticResource ProfileNameSubtitle}"
+                       Text="Перетащите стикеры на редактируемую область" />
+
+                <!--<pancardview:CoverFlowView Margin="0,16"
+                                           HeightRequest="60"
+                                           IsCyclical="false"
+                                           ItemsSource="{Binding StickersList}">
+                    <pancardview:CoverFlowView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="{Binding .}"
+                                   HeightRequest="60"
+                                   WidthRequest="60" />
+                        </DataTemplate>
+                    </pancardview:CoverFlowView.ItemTemplate>
+
+                    <controls:LeftArrowControl AbsoluteLayout.LayoutBounds="0, .5, -1, -1"
+                                               HeightRequest="24"
+                                               ImageSource="arrow_swipe"
+                                               Rotation="180"
+                                               WidthRequest="24" />
+                    <controls:RightArrowControl AbsoluteLayout.LayoutBounds="1, .5, -1, -1"
+                                                HeightRequest="24"
+                                                ImageSource="arrow_swipe"
+                                                WidthRequest="24" />
+                </pancardview:CoverFlowView>-->
+
+                <CollectionView Margin="0,16"
+                                HeightRequest="60"
+                                ItemsSource="{Binding StickersList}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="8"
+                                           Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="{Binding .}"
+                                   HeightRequest="60"
+                                   WidthRequest="60" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <StackLayout Spacing="0">
+                    <BoxView BackgroundColor="#EEEFF0"
+                             HeightRequest="1"
+                             HorizontalOptions="FillAndExpand" />
+                    <StackLayout Margin="0,14,0,6"
+                                 HorizontalOptions="FillAndExpand"
+                                 Orientation="Horizontal">
+                        <Label FontFamily="{StaticResource Rubik-Medium}"
+                               FontSize="14"
+                               HorizontalOptions="EndAndExpand"
+                               Text="Фон"
+                               TextColor="#333333"
+                               VerticalTextAlignment="Center" />
+                        <Image HeightRequest="6"
+                               HorizontalOptions="StartAndExpand"
+                               Rotation="0"
+                               Source="arrow"
+                               WidthRequest="6" />
+                    </StackLayout>
+                </StackLayout>
+
+                <CollectionView Margin="8,0"
+                                HeightRequest="240"
+                                ItemsSource="{Binding StickersList}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="3" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="8">
+                                <BoxView BackgroundColor="{Binding .}"
+                                         CornerRadius="8"
+                                         HeightRequest="108"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="FillAndExpand" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </customLayout:BottomDrawer>
+
+        <StackLayout x:Name="saveButton"
+                     BackgroundColor="#6C74E1"
+                     HeightRequest="78"
+                     Orientation="Horizontal"
+                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                           Property=Width,
+                                                                           Factor=1,
+                                                                           Constant=0}"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=1,
+                                                                       Constant=-78}"
+                     Spacing="16">
+            <Image HeightRequest="21"
+                   HorizontalOptions="EndAndExpand"
+                   Source="check_white"
+                   WidthRequest="21" />
+            <Label FontFamily="{StaticResource RussoOne-Regular}"
+                   FontSize="18"
+                   HorizontalOptions="StartAndExpand"
+                   Text="Сохранить"
+                   TextColor="White"
+                   VerticalTextAlignment="Center" />
+        </StackLayout>
+    </RelativeLayout>
+</pages:BasePage>

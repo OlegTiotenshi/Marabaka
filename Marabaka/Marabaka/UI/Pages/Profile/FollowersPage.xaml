@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage x:Class="Marabaka.UI.Pages.Profile.FollowersPage"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:customLayout="clr-namespace:Marabaka.UI.CustomLayouts"
+                xmlns:pages="clr-namespace:Marabaka.UI.Pages"
+                xmlns:statecontainer="clr-namespace:Marabaka.UI.CustomLayouts.StateContainer"
+                xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <StackLayout BackgroundColor="{StaticResource defaultBackgroundColor}"
+                 Spacing="0">
+        <customLayout:NavigationBarGrid>
+            <Frame>
+                <Image HeightRequest="25"
+                       HorizontalOptions="StartAndExpand"
+                       Source="arrow_gray"
+                       VerticalOptions="CenterAndExpand"
+                       WidthRequest="25" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoBackCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Label Grid.Column="1"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource NavigationTitle}"
+                   Text="@hello_matvey"
+                   VerticalTextAlignment="Center" />
+
+            <Frame Grid.Column="2">
+                <Image HeightRequest="25"
+                       HorizontalOptions="EndAndExpand"
+                       Source="search"
+                       VerticalOptions="CenterAndExpand"
+                       WidthRequest="25" />
+            </Frame>
+        </customLayout:NavigationBarGrid>
+
+        <customLayout:SegmentedButtonControl x:Name="SegmentedControl"
+                                             BackgroundColor="White"
+                                             Command="{Binding SelectedFilterCommand}"
+                                             LabelStyle="{StaticResource SegmentedLabel}"
+                                             PrimaryColor="{StaticResource darkTextColor}"
+                                             SecondaryColor="{StaticResource grayTextColor}"
+                                             SelectedIndex="{Binding SelectedFilterId, Mode=TwoWay}"
+                                             Style="{StaticResource SegmentedControl}">
+            <customLayout:SegmentedButtonControl.SegmentedButtons>
+                <Label Text="Подписчики 1200" />
+                <Label Text="Подписки 234" />
+            </customLayout:SegmentedButtonControl.SegmentedButtons>
+        </customLayout:SegmentedButtonControl>
+
+        <statecontainer:StateContainer BackgroundColor="White"
+                                       HorizontalOptions="FillAndExpand"
+                                       State="{Binding SelectedFilterId}"
+                                       VerticalOptions="FillAndExpand">
+            <statecontainer:StateCondition State="0">
+                <ListView x:Name="followersListView"
+                          ItemsSource="{Binding FollowersList}"
+                          SelectedItem="{Binding ItemSelected, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="16,20,16,0"
+                                             BackgroundColor="White"
+                                             Spacing="0">
+                                    <Grid ColumnSpacing="4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="48" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="140" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <yummy:PancakeView CornerRadius="16">
+                                            <Image Aspect="AspectFill"
+                                                   HeightRequest="48"
+                                                   Source="avatar"
+                                                   WidthRequest="48" />
+                                        </yummy:PancakeView>
+
+                                        <StackLayout Grid.Column="1"
+                                                     Spacing="4">
+                                            <Label FontSize="16"
+                                                   LineBreakMode="TailTruncation"
+                                                   Style="{StaticResource ProfileNameTitle}"
+                                                   Text="{Binding Name}"
+                                                   VerticalOptions="FillAndExpand" />
+                                            <yummy:PancakeView BackgroundGradientAngle="270"
+                                                               BackgroundGradientEndColor="#E73CFE"
+                                                               BackgroundGradientStartColor="#8F58FF"
+                                                               CornerRadius="16"
+                                                               HeightRequest="20"
+                                                               HorizontalOptions="Start"
+                                                               VerticalOptions="FillAndExpand">
+                                                <Label Padding="6,0"
+                                                       FontFamily="{StaticResource Rubik-Medium}"
+                                                       FontSize="12"
+                                                       Text="{Binding Rating}"
+                                                       TextColor="White"
+                                                       VerticalTextAlignment="Center" />
+                                            </yummy:PancakeView>
+                                        </StackLayout>
+
+                                        <!--
+                                            Ниже очень плохая конструкция,
+                                            обязательно исправить на
+                                            CustomRenderer для Button
+                                        -->
+                                        <Frame Grid.Column="2"
+                                               BorderColor="{StaticResource darkTextColor}"
+                                               CornerRadius="8"
+                                               HeightRequest="40"
+                                               VerticalOptions="Center">
+                                            <StackLayout Padding="16,0"
+                                                         Orientation="Horizontal"
+                                                         Spacing="0">
+                                                <Label FontFamily="{StaticResource Rubik-Medium}"
+                                                       FontSize="14"
+                                                       HorizontalOptions="FillAndExpand"
+                                                       Text="Подписка"
+                                                       TextColor="{StaticResource darkTextColor}"
+                                                       VerticalTextAlignment="Center">
+                                                    <Label.Triggers>
+                                                        <DataTrigger Binding="{Binding IsFollow}"
+                                                                     TargetType="Label"
+                                                                     Value="true">
+                                                            <Setter Property="Text" Value="Подписаться" />
+                                                            <Setter Property="TextColor" Value="White" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
+                                                <Image HeightRequest="10"
+                                                       Source="check"
+                                                       WidthRequest="10">
+                                                    <Image.Triggers>
+                                                        <DataTrigger Binding="{Binding IsFollow}"
+                                                                     TargetType="Image"
+                                                                     Value="true">
+                                                            <Setter Property="Source" Value="plus" />
+                                                        </DataTrigger>
+                                                    </Image.Triggers>
+                                                </Image>
+                                            </StackLayout>
+
+                                            <Frame.Triggers>
+                                                <DataTrigger Binding="{Binding IsFollow}"
+                                                             TargetType="Frame"
+                                                             Value="true">
+                                                    <Setter Property="BackgroundColor" Value="{StaticResource darkTextColor}" />
+                                                </DataTrigger>
+                                            </Frame.Triggers>
+
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference followersListView}, Path=Parent.BindingContext.FollowCommand}"
+                                                                      CommandParameter="{Binding .}" />
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+
+                                        <!--<Button Grid.Column="2"
+                                                Style="{StaticResource FollowButton}">
+                                            <Button.Triggers>
+                                                <DataTrigger Binding="{Binding IsFollow}"
+                                                             TargetType="Button"
+                                                             Value="false">
+                                                    <Setter Property="BackgroundColor" Value="{StaticResource darkTextColor}" />
+                                                    <Setter Property="ImageSource" Value="plus" />
+                                                    <Setter Property="Text" Value="Подписаться" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </DataTrigger>
+                                            </Button.Triggers>
+                                        </Button>-->
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </statecontainer:StateCondition>
+
+            <statecontainer:StateCondition State="1">
+                <Label Text="2" />
+            </statecontainer:StateCondition>
+        </statecontainer:StateContainer>
+    </StackLayout>
+</pages:BasePage>

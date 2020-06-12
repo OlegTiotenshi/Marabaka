@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage x:Class="Marabaka.UI.Pages.Profile.ProfilePage"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:customLayout="clr-namespace:Marabaka.UI.CustomLayouts"
+                xmlns:pages="clr-namespace:Marabaka.UI.Pages"
+                xmlns:statecontainer="clr-namespace:Marabaka.UI.CustomLayouts.StateContainer"
+                xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <StackLayout BackgroundColor="{StaticResource defaultBackgroundColor}"
+                 Spacing="0">
+        <customLayout:NavigationBarGrid>
+            <Frame>
+                <Image HeightRequest="25"
+                       HorizontalOptions="StartAndExpand"
+                       Source="settings"
+                       VerticalOptions="CenterAndExpand"
+                       WidthRequest="25" />
+            </Frame>
+
+            <Label Grid.Column="1"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource NavigationTitle}"
+                   Text="@hello_matvey"
+                   VerticalTextAlignment="Center" />
+
+            <Frame Grid.Column="2">
+                <Image HeightRequest="25"
+                       HorizontalOptions="EndAndExpand"
+                       Source="photo"
+                       VerticalOptions="CenterAndExpand"
+                       WidthRequest="25" />
+            </Frame>
+        </customLayout:NavigationBarGrid>
+
+        <customLayout:SegmentedButtonControl x:Name="SegmentedControl"
+                                             BackgroundColor="White"
+                                             Command="{Binding SelectedFilterCommand}"
+                                             LabelStyle="{StaticResource SegmentedLabel}"
+                                             PrimaryColor="{StaticResource darkTextColor}"
+                                             SecondaryColor="{StaticResource grayTextColor}"
+                                             SelectedIndex="{Binding SelectedFilterId, Mode=TwoWay}"
+                                             Style="{StaticResource SegmentedControl}">
+            <customLayout:SegmentedButtonControl.SegmentedButtons>
+                <Label Text="Доска" />
+                <Label Text="Навыки" />
+                <Label Text="Проекты" />
+                <Label Text="Лайки" />
+            </customLayout:SegmentedButtonControl.SegmentedButtons>
+        </customLayout:SegmentedButtonControl>
+
+        <statecontainer:StateContainer HorizontalOptions="FillAndExpand"
+                                       State="{Binding SelectedFilterId}"
+                                       VerticalOptions="FillAndExpand">
+            <statecontainer:StateCondition State="0">
+                <ScrollView VerticalScrollBarVisibility="Never">
+                    <StackLayout>
+                        <yummy:PancakeView Margin="16,16,16,16"
+                                           BackgroundColor="White"
+                                           CornerRadius="8"
+                                           HorizontalOptions="FillAndExpand">
+                            <StackLayout Padding="16,16,16,0"
+                                         Spacing="16">
+                                <Grid HorizontalOptions="FillAndExpand"
+                                      RowSpacing="11">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="32" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="96" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Spacing="1">
+                                        <Label Style="{StaticResource ProfileNameTitle}"
+                                               Text="Матвей" />
+
+                                        <Label Padding="0,1,0,0"
+                                               Style="{StaticResource ProfileNameSubtitle}"
+                                               Text="12 лет (Санкт-Петербург)" />
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="1"
+                                                 Orientation="Horizontal"
+                                                 Spacing="4">
+                                        <yummy:PancakeView BackgroundGradientAngle="270"
+                                                           BackgroundGradientEndColor="#E73CFE"
+                                                           BackgroundGradientStartColor="#8F58FF"
+                                                           CornerRadius="16"
+                                                           HeightRequest="32"
+                                                           HorizontalOptions="Start">
+                                            <StackLayout Padding="12,0"
+                                                         Orientation="Horizontal"
+                                                         Spacing="4">
+                                                <Image HeightRequest="20"
+                                                       Source="profile_star"
+                                                       WidthRequest="20" />
+                                                <Label FontFamily="{StaticResource Rubik-Medium}"
+                                                       FontSize="14"
+                                                       Text="627 XP"
+                                                       TextColor="White"
+                                                       VerticalTextAlignment="Center" />
+                                            </StackLayout>
+                                        </yummy:PancakeView>
+
+                                        <yummy:PancakeView BackgroundColor="#EEEFF0"
+                                                           CornerRadius="16"
+                                                           HeightRequest="32"
+                                                           HorizontalOptions="Start">
+                                            <StackLayout Padding="12,0"
+                                                         Orientation="Horizontal"
+                                                         Spacing="4">
+                                                <Image HeightRequest="20"
+                                                       Source="profile_diamond"
+                                                       WidthRequest="20" />
+                                                <Label FontFamily="{StaticResource Rubik-Medium}"
+                                                       FontSize="14"
+                                                       Text="50"
+                                                       TextColor="{StaticResource grayTextColor}"
+                                                       VerticalTextAlignment="Center" />
+                                            </StackLayout>
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+
+                                    <yummy:PancakeView Grid.RowSpan="2"
+                                                       Grid.Column="1"
+                                                       CornerRadius="24">
+                                        <Image Aspect="AspectFill"
+                                               HeightRequest="96"
+                                               Source="avatar"
+                                               WidthRequest="96" />
+                                    </yummy:PancakeView>
+                                </Grid>
+
+                                <StackLayout Spacing="0">
+                                    <StackLayout Orientation="Horizontal"
+                                                 Spacing="32">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontFamily="{StaticResource Rubik-Medium}"
+                                                          FontSize="14"
+                                                          Text="1200"
+                                                          TextColor="{StaticResource darkTextColor}" />
+                                                    <Span FontFamily="{StaticResource Rubik-Regular}"
+                                                          FontSize="12"
+                                                          Text=" Подписчики"
+                                                          TextColor="{StaticResource grayTextColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontFamily="{StaticResource Rubik-Medium}"
+                                                          FontSize="14"
+                                                          Text="234"
+                                                          TextColor="{StaticResource darkTextColor}" />
+                                                    <Span FontFamily="{StaticResource Rubik-Regular}"
+                                                          FontSize="12"
+                                                          Text=" Подписки"
+                                                          TextColor="{StaticResource grayTextColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding GoToFollowersPageCommand}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+
+                                    <Label Margin="0,16,0,0"
+                                           FontFamily="{StaticResource Rubik-Regular}"
+                                           FontSize="14"
+                                           Text="Информация о пользователе, которую он написал в своем профиле."
+                                           TextColor="#333333" />
+
+                                    <Button Margin="48,12,48,0"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="#111826"
+                                            BorderWidth="1"
+                                            Command="{Binding GoToCustomizeProfilePageCommand}"
+                                            CornerRadius="8"
+                                            FontFamily="{StaticResource Rubik-Regular}"
+                                            FontSize="14"
+                                            HeightRequest="40"
+                                            Text="Кастомизировать мой профиль"
+                                            TextColor="{StaticResource darkTextColor}" />
+
+                                </StackLayout>
+
+                                <StackLayout Spacing="0">
+                                    <BoxView Margin="-16,0,-16,0"
+                                             BackgroundColor="#EEEFF0"
+                                             HeightRequest="1"
+                                             HorizontalOptions="FillAndExpand" />
+
+                                    <StackLayout HeightRequest="46"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Orientation="Horizontal">
+                                        <Label FontFamily="{StaticResource Rubik-Medium}"
+                                               FontSize="14"
+                                               HorizontalOptions="EndAndExpand"
+                                               Text="Свернуть"
+                                               TextColor="#333333"
+                                               VerticalTextAlignment="Center" />
+                                        <Image HeightRequest="6"
+                                               HorizontalOptions="StartAndExpand"
+                                               Rotation="180"
+                                               Source="arrow"
+                                               WidthRequest="6" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </yummy:PancakeView>
+                    </StackLayout>
+                </ScrollView>
+            </statecontainer:StateCondition>
+
+            <statecontainer:StateCondition State="1">
+                <StackLayout Margin="0,23,0,0"
+                             VerticalOptions="FillAndExpand">
+                    <Label HorizontalOptions="Center"
+                           Style="{StaticResource NavigationTitle}"
+                           Text="Канал 1"
+                           TextColor="#979797" />
+                </StackLayout>
+            </statecontainer:StateCondition>
+
+            <statecontainer:StateCondition State="2">
+                <StackLayout Margin="0,23,0,0"
+                             VerticalOptions="FillAndExpand">
+                    <Label HorizontalOptions="Center"
+                           Style="{StaticResource NavigationTitle}"
+                           Text="Канал 2"
+                           TextColor="#979797" />
+                </StackLayout>
+            </statecontainer:StateCondition>
+
+            <statecontainer:StateCondition State="3">
+                <StackLayout Margin="0,23,0,0"
+                             VerticalOptions="FillAndExpand">
+                    <Label HorizontalOptions="Center"
+                           Style="{StaticResource NavigationTitle}"
+                           Text="Канал 3"
+                           TextColor="#979797" />
+                </StackLayout>
+            </statecontainer:StateCondition>
+        </statecontainer:StateContainer>
+    </StackLayout>
+</pages:BasePage>

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application x:Class="Marabaka.App"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customLayouts="clr-namespace:Marabaka.UI.CustomLayouts"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--  Fonts  -->
+            <OnPlatform x:Key="Rubik-Medium"
+                        x:TypeArguments="x:String">
+                <On Platform="Android"
+                    Value="Rubik-Medium.ttf#Rubik-Medium" />
+                <On Platform="iOS"
+                    Value="Rubik-Medium" />
+            </OnPlatform>
+            <OnPlatform x:Key="Rubik-Regular"
+                        x:TypeArguments="x:String">
+                <On Platform="Android"
+                    Value="Rubik-Regular.ttf#Rubik-Regulart" />
+                <On Platform="iOS"
+                    Value="Rubik-Regular" />
+            </OnPlatform>
+            <OnPlatform x:Key="RussoOne-Regular"
+                        x:TypeArguments="x:String">
+                <On Platform="Android"
+                    Value="RussoOne-Regular.ttf#RussoOne-Regular" />
+                <On Platform="iOS"
+                    Value="RussoOne-Regular" />
+            </OnPlatform>
+
+            <!--  Colors  -->
+            <Color x:Key="primaryColor">#171F30</Color>
+            <Color x:Key="secondColor">#ffffff</Color>
+            <Color x:Key="darkTextColor">#020917</Color>
+            <Color x:Key="grayTextColor">#8D9198</Color>
+            <Color x:Key="separatorColor">#EEEFF0</Color>
+            <Color x:Key="defaultBackgroundColor">#171F30</Color>
+
+            <!--  Base Styles  -->
+            <Style TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="IsClippedToBounds" Value="true" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="CornerRadius" Value="0" />
+            </Style>
+            <Style TargetType="ListView">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HasUnevenRows" Value="True" />
+                <Setter Property="SeparatorVisibility" Value="None" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+            </Style>
+
+            <!--  Styles  -->
+            <Style x:Key="NavigationTitle"
+                   TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource darkTextColor}" />
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="FontFamily" Value="{StaticResource Rubik-Regular}" />
+            </Style>
+            <Style x:Key="SeparatorLine"
+                   TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{StaticResource separatorColor}" />
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="Opacity" Value="1" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="SegmentedLabel"
+                   TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource darkTextColor}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontFamily" Value="{StaticResource Rubik-Medium}" />
+            </Style>
+            <Style x:Key="SegmentedControl"
+                   TargetType="customLayouts:SegmentedButtonControl">
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="MinimumHeightRequest" Value="50" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="ProfileNameTitle"
+                   TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource darkTextColor}" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontFamily" Value="{StaticResource RussoOne-Regular}" />
+            </Style>
+            <Style x:Key="ProfileNameSubtitle"
+                   TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource grayTextColor}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontFamily" Value="{StaticResource Rubik-Regular}" />
+            </Style>
+
+
+
+            <Style x:Key="BaseFollowButton"
+                   TargetType="Button">
+                <Setter Property="ContentLayout" Value="Right" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="FontFamily" Value="{StaticResource Rubik-Regular}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="UnfollowButton"
+                   BasedOn="{StaticResource BaseFollowButton}"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource darkTextColor}" />
+                <Setter Property="ImageSource" Value="plus" />
+                <Setter Property="Text" Value="Подписаться" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <Style x:Key="FollowButton"
+                   BasedOn="{StaticResource BaseFollowButton}"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="ImageSource" Value="check" />
+                <Setter Property="Text" Value="Подписка" />
+                <Setter Property="TextColor" Value="{StaticResource darkTextColor}" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BorderColor" Value="{StaticResource darkTextColor}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
