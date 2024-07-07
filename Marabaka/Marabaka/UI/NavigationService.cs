@@ -95,8 +95,6 @@ namespace Marabaka.UI
 
         async void NormalPush(Page newPage, TaskCompletionSource<bool> completed)
         {
-            //Device.BeginInvokeOnMainThread(async () =>
-            //{
             try
             {
                 await GetTopNavigation().PushAsync(newPage, true);
@@ -106,7 +104,6 @@ namespace Marabaka.UI
             {
                 completed.SetResult(false);
             }
-            //});
         }
 
         void ModalPush(Page newPage, TaskCompletionSource<bool> completed, bool newNavigationStack = true)
@@ -128,8 +125,6 @@ namespace Marabaka.UI
 
         void RootPush(Page newPage, TaskCompletionSource<bool> pushInfoOnCompletedTask = null)
         {
-            //Device.BeginInvokeOnMainThread(async () =>
-            //{
             try
             {
                 if (newPage != null)
@@ -185,7 +180,6 @@ namespace Marabaka.UI
                 Console.WriteLine(e);
                 pushInfoOnCompletedTask?.SetResult(false);
             }
-            //});
         }
 
         void CustomPush(Page newPage, TaskCompletionSource<bool> completed, bool newNavigationStack = true)
@@ -339,37 +333,6 @@ namespace Marabaka.UI
             return viewModel;
         }
         #endregion
-
-        //public static async void GoToNoInternetPage()
-        //{
-        //    try
-        //    {
-        //        if (PopupNavigation.Instance.PopupStack.FirstOrDefault(x => x is NoInternetPage) != null)
-        //            return;
-
-        //        await PopupNavigation.Instance.PushAsync(new NoInternetPage());
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-
-        //}
-
-        //public static void CloseNoInternetPage()
-        //{
-        //    try
-        //    {
-        //        var page = PopupNavigation.Instance.PopupStack.FirstOrDefault(x => x is NoInternetPage);
-
-        //        if (page != null)
-        //            PopupNavigation.Instance.RemovePageAsync(page, true);
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-        //}
     }
 
     public class NavigationPushInfo

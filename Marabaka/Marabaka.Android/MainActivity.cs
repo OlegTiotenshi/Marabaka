@@ -5,7 +5,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using PanCardView.Droid;
-using Plugin.CurrentActivity;
 
 namespace Marabaka.Droid
 {
@@ -21,13 +20,12 @@ namespace Marabaka.Droid
 
             base.OnCreate(savedInstanceState);
 
-            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-
-            UserDialogs.Init(() => CrossCurrentActivity.Current.Activity);
-            //Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental");
+            UserDialogs.Init(this);
+            Rg.Plugins.Popup.Popup.Init(this);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
             LoadApplication(new App());
             CardsViewRenderer.Preserve();
         }

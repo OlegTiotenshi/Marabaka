@@ -8,7 +8,7 @@
              mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
-            <!--  Fonts  -->
+            <!--#region Fonts-->
             <OnPlatform x:Key="Rubik-Medium"
                         x:TypeArguments="x:String">
                 <On Platform="Android"
@@ -30,16 +30,18 @@
                 <On Platform="iOS"
                     Value="RussoOne-Regular" />
             </OnPlatform>
+            <!--#endregion-->
 
-            <!--  Colors  -->
+            <!--#region Colors-->
             <Color x:Key="primaryColor">#171F30</Color>
             <Color x:Key="secondColor">#ffffff</Color>
             <Color x:Key="darkTextColor">#020917</Color>
             <Color x:Key="grayTextColor">#8D9198</Color>
             <Color x:Key="separatorColor">#EEEFF0</Color>
             <Color x:Key="defaultBackgroundColor">#171F30</Color>
+            <!--#endregion-->
 
-            <!--  Base Styles  -->
+            <!--#region Base Styles-->
             <Style TargetType="Frame">
                 <Setter Property="HasShadow" Value="False" />
                 <Setter Property="Padding" Value="0" />
@@ -54,8 +56,9 @@
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalScrollBarVisibility" Value="Never" />
             </Style>
+            <!--#endregion-->
 
-            <!--  Styles  -->
+            <!--#region Styles-->
             <Style x:Key="NavigationTitle"
                    TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource darkTextColor}" />
@@ -94,8 +97,7 @@
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontFamily" Value="{StaticResource Rubik-Regular}" />
             </Style>
-
-
+            <!--#endregion-->
 
             <Style x:Key="BaseFollowButton"
                    TargetType="Button">

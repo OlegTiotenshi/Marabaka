@@ -1,5 +1,4 @@
-﻿using Acr.UserDialogs.Infrastructure;
-using Marabaka.BL.Models;
+﻿using Marabaka.BL.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;

@@ -1,4 +1,5 @@
-﻿using Marabaka.UI;
+﻿using Marabaka.DAL.DataServices;
+using Marabaka.UI;
 using Xamarin.Forms;
 
 namespace Marabaka
@@ -6,11 +7,14 @@ namespace Marabaka
     public partial class App : Application
     {
         public App()
-        {
+        {            
+            //Fix ios crash
+            //Current.MainPage = new ContentPage();
+
             InitializeComponent();
 
             DialogService.Init(this);
-            //DataServices.Init();
+            DataServices.Init();
 
             NavigationService.Init(Pages.HomeTabbed);
         }
