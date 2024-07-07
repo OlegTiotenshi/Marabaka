@@ -4,7 +4,6 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using PanCardView.Droid;
 
 namespace Marabaka.Droid
 {
@@ -27,7 +26,6 @@ namespace Marabaka.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
             LoadApplication(new App());
-            CardsViewRenderer.Preserve();
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

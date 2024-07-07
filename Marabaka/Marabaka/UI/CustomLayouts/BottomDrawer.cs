@@ -134,7 +134,6 @@ namespace Marabaka.UI.CustomLayouts
 
         private double GetClosestLockState(double TranslationY)
         {
-            // Play with these values to adjust the locking motions - this will change depending on the amount of content ona  apge
             double current = GetPropertionDistance(TranslationY);
 
             // Calculate which lockstate it's the closest to
