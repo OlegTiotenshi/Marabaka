@@ -1,9 +1,8 @@
 ﻿using Android.Content;
 using Android.Graphics;
-using Android.Support.Design.BottomNavigation;
-using Android.Support.Design.Internal;
-using Android.Support.Design.Widget;
 using Android.Widget;
+using Google.Android.Material.BottomNavigation;
+using Google.Android.Material.Internal;
 using Marabaka.Droid.CustomLayouts;
 using Marabaka.UI.CustomLayouts;
 using Xamarin.Forms;

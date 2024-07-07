@@ -1,6 +1,5 @@
 ﻿using Marabaka.BL.ViewModels;
 using Marabaka.UI.CustomLayouts;
-using System.Collections;
 using Xamarin.Forms.Xaml;
 
 namespace Marabaka.UI.Pages
